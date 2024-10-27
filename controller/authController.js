@@ -1,5 +1,14 @@
 import User from "../models/UserSchema.js";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+const generateToken = (user) => {
+    return jwt.sign(
+        { id: user._id, name: user.name },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: '2d' }
+    )
+}
 
 export const registerUser = async (req, res, next) => {
     // console.log(req.body);
@@ -31,15 +40,18 @@ export const registerUser = async (req, res, next) => {
 export const loginUser = async (req, res, next) => {
     const { email } = req.body;
     try {
-        let user = await User.findById(email);
+        let user = await User.findOne({ email: email });
         if (!user) {
-            return res.status(400).json({ success: false, message: "Email not exists" })
+            return res.status(404).json({ success: false, message: "User not exists" })
         }
-        const isPasswordMatch = await bcrypt.compare(req.body, user.password);
+
+        const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
         if (!isPasswordMatch) {
-            return res.status(401).json({ success: false, message: "Incorrect Password" });
+            return res.status(400).json({ success: false, message: "Failed to login" });
         }
-        res.status(200).json({ success: true, message: "User Login successfully" })
+        const token = generateToken(user)
+        const { password, _id, ...rest } = user._doc;
+        res.status(200).json({ success: true, message: "User Login successfully", token, data: { ...rest } })
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "Internal server error" });
