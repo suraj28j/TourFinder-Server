@@ -4,6 +4,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import authRouter from './routes/authRoute.js';
+import tourRouter from './routes/tourRoute.js';
+
 
 dotenv.config();
 
@@ -32,7 +34,8 @@ app.use(cors(coreOptions))
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/v1/tour",authRouter)
+app.use("/api/v1/auth",authRouter)
+app.use("/api/v1/tour",tourRouter)
 
 connectDB()
     .then(() => {

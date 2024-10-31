@@ -2,43 +2,44 @@ import mongoose from "mongoose";
 
 const TourSchema = new mongoose.Schema({
     title: {
-        type: String
+        type: String,
+        require: true
     },
     city: {
-        type: String
+        type: String,
+        require: true
     },
     address: {
-        type: String
+        type: String,
+        require: true
     },
     distance: {
-        type: Number
+        type: Number,
+        require: true
     },
     price: {
-        type: String
+        type: String,
+        require: true
     },
     maxGroupSize: {
-        type: String
+        type: String,
+        require: true
     },
     description: {
-        type: String
+        type: String,
+        require: true
     },
     reviews: {
-        type: String
+        type: String,
+        require: true
+    },
+    photo: {
+        type: String,
+        require: true
     },
     featured: {
         type: Boolean,
         default: true
-    },
-    user: {
-        id: {
-            type: mongoose.Schema.ObjectId,
-            ref: "User",
-            require: true
-        },
-        name: {
-            type: String,
-            require: true
-        }
     }
 })
 
