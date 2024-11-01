@@ -25,3 +25,17 @@ export const getAllTour = async(req,res,next) => {
         res.status(500).json({success:false,message:"Internal Server Error"});
     }
 }
+
+export const getSingleTour = async(req,res,next) => {
+    const tourId = req.params.id
+    try {
+        let tour = await Tour.findById(tourId);
+        if(!tour){
+            return res.status(404).json({success:false,message:"Tour not found"});
+        }
+         res.status(200).json({success:true,message:"Tour Found Successfully",data:tour});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({success:false,message:"Internal Server Error"});
+    }
+}
