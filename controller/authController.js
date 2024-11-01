@@ -12,7 +12,7 @@ const generateToken = (user) => {
 
 export const registerUser = async (req, res, next) => {
     // console.log(req.body);
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     try {
         let user = await User.findOne({ email: email });
@@ -27,7 +27,8 @@ export const registerUser = async (req, res, next) => {
         user = new User({
             name,
             email,
-            password: hashPassword
+            password: hashPassword,
+            role
         })
         await user.save();
         res.status(200).json({ success: true, message: "User registration successful" })

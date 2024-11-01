@@ -15,3 +15,13 @@ export const createTour = async (req, res, next) => {
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
+
+export const getAllTour = async(req,res,next) => {
+    try {
+        const tours = await Tour.find({});
+        res.status(200).json({success:true,message:"Tours found successfully",data:tours})
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({success:false,message:"Internal Server Error"});
+    }
+}
