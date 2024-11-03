@@ -1,10 +1,26 @@
 import mongoose from "mongoose";
 
 const ReviewSchema = new mongoose.Schema({
-    review: {
+    rating: {
         type: Number,
         require: true
     },
+    comment: {
+        type: String,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+
+    tour: {
+        id: {
+            type: mongoose.Schema.ObjectId,
+            ref: "Tour",
+            require: true
+        }
+    },
+
     user: {
         id: {
             type: mongoose.Schema.ObjectId,

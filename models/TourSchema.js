@@ -30,7 +30,7 @@ const TourSchema = new mongoose.Schema({
         require: true
     },
     reviews: {
-        type: String,
+        type: Array,
         require: true
     },
     photo: {
