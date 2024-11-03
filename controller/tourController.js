@@ -16,26 +16,46 @@ export const createTour = async (req, res, next) => {
     }
 }
 
-export const getAllTour = async(req,res,next) => {
+export const getAllTour = async (req, res, next) => {
     try {
         const tours = await Tour.find({});
-        res.status(200).json({success:true,message:"Tours found successfully",data:tours})
+        res.status(200).json({ success: true, message: "Tours found successfully", data: tours })
     } catch (error) {
         console.log(error);
-        res.status(500).json({success:false,message:"Internal Server Error"});
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
 
-export const getSingleTour = async(req,res,next) => {
+export const getSingleTour = async (req, res, next) => {
     const tourId = req.params.id
     try {
         let tour = await Tour.findById(tourId);
-        if(!tour){
-            return res.status(404).json({success:false,message:"Tour not found"});
+        if (!tour) {
+            return res.status(404).json({ success: false, message: "Tour not found" });
         }
-         res.status(200).json({success:true,message:"Tour Found Successfully",data:tour});
+        res.status(200).json({ success: true, message: "Tour Found Successfully", data: tour });
     } catch (error) {
         console.log(error);
-        res.status(500).json({success:false,message:"Internal Server Error"});
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+}
+
+
+export const updateTour = async (req, res, next) => {
+    const tourId = req.params.id
+    try {
+        let tour = await Tour.findOne({ _id: tourId })
+        // console.log(tour);
+        if (!tour) {
+            return res.status(404).json({ message: "Tour not found" })
+        }
+        await Tour.findByIdAndUpdate(
+            tourId, { $set: req.body }, { new: true }
+        )
+        res.status(200).json({ success: true, message: "Tour Update Successfull" });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
