@@ -26,9 +26,15 @@ export const createReview = async (req, res, next) => {
 
 export const getReview = async (req, res, next) => {
     const id = req.params.id
+    
     try {
         const allReview = await Review.find({});
-        res.status(200).json({ success: true, message: "Fetch all review successfully", data: allReview })
+        const tourReview = allReview.filter((item)=>{
+            return item.tour.id.toString() === id;
+        })
+        // console.log(tourReview);
+        
+        res.status(200).json({ success: true, message: "Fetch all review successfully", data: tourReview })
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "Internal server error" })
