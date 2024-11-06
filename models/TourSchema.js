@@ -33,6 +33,9 @@ const TourSchema = new mongoose.Schema({
         type: Array,
         require: true
     },
+    avgRating:{
+        type:Number
+    },
     photo: {
         type: String,
         require: true

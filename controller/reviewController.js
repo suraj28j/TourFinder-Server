@@ -1,8 +1,7 @@
 import Review from "../models/ReviewSchema.js";
+import Tour from "../models/TourSchema.js";
 
 export const createReview = async (req, res, next) => {
-    // console.log(req.body);
-
     const { rating, comment, id: tourId, user } = req.body
     try {
         let review = new Review({
@@ -26,14 +25,14 @@ export const createReview = async (req, res, next) => {
 
 export const getReview = async (req, res, next) => {
     const id = req.params.id
-    
+
     try {
         const allReview = await Review.find({});
-        const tourReview = allReview.filter((item)=>{
+        const tourReview = allReview.filter((item) => {
             return item.tour.id.toString() === id;
         })
         // console.log(tourReview);
-        
+
         res.status(200).json({ success: true, message: "Fetch all review successfully", data: tourReview })
     } catch (error) {
         console.log(error);
