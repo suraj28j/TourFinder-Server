@@ -24,12 +24,12 @@ export const createReview = async (req, res, next) => {
 }
 
 export const getReview = async (req, res, next) => {
-    const id = req.params.id
+    const tourId = req.params.id
 
     try {
         const allReview = await Review.find({});
         const tourReview = allReview.filter((item) => {
-            return item.tour.id.toString() === id;
+            return item.tour.id.toString() === tourId;
         })
         // console.log(tourReview);
 
@@ -38,5 +38,4 @@ export const getReview = async (req, res, next) => {
         console.log(error);
         res.status(500).json({ success: false, message: "Internal server error" })
     }
-
 }
