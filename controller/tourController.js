@@ -43,6 +43,8 @@ export const getSingleTour = async (req, res, next) => {
 
 export const updateTour = async (req, res, next) => {
     const tourId = req.params.id
+    console.log("Body : ",req.body);
+    
     try {
         let tour = await Tour.findOne({ _id: tourId })
         // console.log(tour);

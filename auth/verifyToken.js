@@ -3,7 +3,7 @@ import User from '../models/UserSchema.js';
 
 export const authenticate = (req, res, next) => {
     const authToken = req.headers.authorization;
-
+    console.log("Token : ", req.headers.authorization);
     if (!authToken || !authToken.startsWith("Bearer"))
         return res.status(401).json({ success: false, message: "Authorization denied" });
 
@@ -26,13 +26,12 @@ export const restrict = (roles) => async (req, res, next) => {
     try {
         const userId = req.UserId;
         let user = await User.findById(userId);
-
         if (!user) {
             return res.status(404).json({ success: false, message: "User not found" })
         }
 
         const userRole = user.role;
-       
+
         if (userRole === "admin" && roles.includes("admin")) {
             next()
         } else {

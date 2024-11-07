@@ -6,7 +6,7 @@ const router = express.Router();
 
 // "http://localhost:8000/api/v1/tour/..."
 router.post("/createtour", authenticate, restrict("admin"), createTour);
-router.put("/updatetour/:id", authenticate, restrict("admin"), updateTour);
+router.put("/updatetour/:id",authenticate, updateTour); // restrict("admin")
 router.get("/getalltour", getAllTour);
 router.get("/getsingletour/:id", getSingleTour);
 router.get("/search/", getAllTour);
