@@ -1,5 +1,5 @@
 import Review from "../models/ReviewSchema.js";
-// import Tour from "../models/TourSchema.js";
+import Tour from "../models/TourSchema.js";
 
 export const createReview = async (req, res, next) => {
     const { rating, comment, id: tourId, user } = req.body
@@ -16,6 +16,10 @@ export const createReview = async (req, res, next) => {
             }
         })
         await review.save()
+
+        await Tour.findByIdAndUpdate(
+            tourId, { $push: { reviews:rating } }, { new: true }
+        )
         res.status(200).json({ success: true, message: "Review added successfully" });
     } catch (error) {
         console.log(error);

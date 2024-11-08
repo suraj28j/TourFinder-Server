@@ -3,7 +3,7 @@ import User from '../models/UserSchema.js';
 
 export const authenticate = (req, res, next) => {
     const authToken = req.headers.authorization;
-    console.log("Token : ", req.headers.authorization);
+    // console.log("Token : ", req.headers.authorization);
     if (!authToken || !authToken.startsWith("Bearer"))
         return res.status(401).json({ success: false, message: "Authorization denied" });
 
@@ -18,7 +18,7 @@ export const authenticate = (req, res, next) => {
         if (error.name === "TokenExpiredError") {
             return res.status(401).json({ success: false, message: "Token Expired" })
         }
-        res.status(401).json({ success: false, message: "Invalid token, Please login again" })
+        res.status(401).json({ success: false, message: "Invalid token, Please login again" });
     }
 }
 
