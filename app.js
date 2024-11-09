@@ -7,6 +7,8 @@ import authRouter from './routes/authRoute.js';
 import tourRouter from './routes/tourRoute.js';
 import userRouter from './routes/userRoute.js';
 import reviewRouter from './routes/reviewRoute.js';
+import bookingRouter from './routes/bookingRoute.js';
+
 
 
 dotenv.config();
@@ -40,6 +42,7 @@ app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/user",userRouter)
 app.use("/api/v1/tour",tourRouter)
 app.use("/api/v1/review/",reviewRouter)
+app.use("/api/v1/booking",bookingRouter)
 
 
 connectDB()

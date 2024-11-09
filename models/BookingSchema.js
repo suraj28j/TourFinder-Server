@@ -13,7 +13,7 @@ const BookingSchema = new mongoose.Schema({
         type:Date,
         require:true
     },
-    group:{
+    guest:{
         type:Number,
         require:true
     }
