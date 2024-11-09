@@ -4,7 +4,7 @@ import { authenticate } from '../auth/verifyToken.js';
 
 const router = express.Router();
 
-// "http://localhost:8000/api/v1/tour/review"
+// http://localhost:8000/api/v1/review/...
 router.post("/createreview",authenticate, createReview);
 router.get("/getreview/:id",getReview);
 
