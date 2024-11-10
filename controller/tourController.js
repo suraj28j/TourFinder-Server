@@ -77,7 +77,6 @@ export const findTour = async(req,res,next) => {
         res.status(200).json({success:true,message:"Tour find successfully",data:findTour});
     } catch (error) {
         res.status(500).json({success:false,message:"Internal Server Error"});
-    }
-    
+    }   
 }
 
