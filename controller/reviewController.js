@@ -1,6 +1,7 @@
 import Review from "../models/ReviewSchema.js";
 import Tour from "../models/TourSchema.js";
 
+// create review and update TourSchema --> review 
 export const createReview = async (req, res, next) => {
     const { rating, comment, id: tourId, user } = req.body
     try {
