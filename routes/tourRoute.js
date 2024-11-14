@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTour, findTour, getAllTour, getSingleTour, updateTour } from '../controller/TourController.js';
+import { createTour, findTour, getAllTour, getSingleTour, updateTour } from '../controller/tourController.js';
 import { authenticate, restrict } from '../auth/verifyToken.js';
 
 const router = express.Router();
