@@ -16,6 +16,17 @@ const BookingSchema = new mongoose.Schema({
     guest:{
         type:Number,
         require:true
+    },
+    total:{
+        type:Number,
+        require:true
+    },
+    tour:{
+        id:{
+            type:mongoose.Schema.ObjectId,
+            ref:"Tour",
+            require:true
+        }
     }
 })
 
