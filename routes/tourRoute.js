@@ -10,4 +10,5 @@ router.put("/updatetour/:id",authenticate, updateTour); // restrict("admin")
 router.get("/getalltour", getAllTour);
 router.get("/getsingletour/:id", getSingleTour);
 router.get("/findtour/:city",findTour);
+
 export default router;
