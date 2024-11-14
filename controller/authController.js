@@ -20,7 +20,7 @@ export const registerUser = async (req, res, next) => {
         if (user) {
             return res.status(400).json({ message: "Email already exists" });
         }
-
+        
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
 
@@ -50,8 +50,11 @@ export const loginUser = async (req, res, next) => {
         if (!isPasswordMatch) {
             return res.status(400).json({ success: false, message: "Failed to login" });
         }
+
         const token = generateToken(user)
+
         const { password, role, ...rest } = user._doc;
+
         res.status(200).json({ success: true, message: "User Login successfully", token, data: { ...rest },role:role })
     } catch (error) {
         console.log(error);

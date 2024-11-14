@@ -3,22 +3,21 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
-
 import authRouter from './routes/authRoute.js';
 import tourRouter from './routes/tourRoute.js';
 import userRouter from './routes/userRoute.js';
 import reviewRouter from './routes/reviewRoute.js';
 import bookingRouter from './routes/bookingRoute.js';
 
-
 dotenv.config();
 
 const app = express();
 
-const port = process.env.PORT || 8000;
+// const port = process.env.PORT || 8000;
+const port = 8000;
+
 
 mongoose.set("strictQuery", false);
-
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);
@@ -32,7 +31,6 @@ const coreOptions = {
     origin: true,
     credentials: true
 }
-
 app.use(cors(coreOptions))
 
 app.use(express.json());

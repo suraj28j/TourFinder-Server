@@ -1,5 +1,4 @@
 import User from "../models/UserSchema.js"
-import bcrypt from 'bcrypt'
 
 export const updateUser = async (req, res, next) => {
     const id = req.params.id

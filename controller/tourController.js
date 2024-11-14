@@ -43,7 +43,7 @@ export const getSingleTour = async (req, res, next) => {
 export const updateTour = async (req, res, next) => {
     const tourId = req.params.id
     // console.log("Body : ",req.body);
-    
+
     try {
         let tour = await Tour.findOne({ _id: tourId })
         // console.log(tour);
@@ -61,21 +61,21 @@ export const updateTour = async (req, res, next) => {
     }
 }
 
-export const findTour = async(req,res,next) => {
+export const findTour = async (req, res, next) => {
     const city = req.params.city
     // console.log(city);
     try {
         const tours = await Tour.find({})
-        const findTour = tours.filter((tour)=>{
+        const findTour = tours.filter((tour) => {
             return tour.city.toLowerCase() === city.toLowerCase();
         })
 
-        if(!findTour){
-            return res.status(404).json({success:false,message:"Can not find this tour"});
+        if (!findTour) {
+            return res.status(404).json({ success: false, message: "Can not find this tour" });
         }
-        res.status(200).json({success:true,message:"Tour find successfully",data:findTour});
+        res.status(200).json({ success: true, message: "Tour find successfully", data: findTour });
     } catch (error) {
-        res.status(500).json({success:false,message:"Internal Server Error"});
-    }   
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
 }
 
