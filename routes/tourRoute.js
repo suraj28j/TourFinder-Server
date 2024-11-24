@@ -11,4 +11,6 @@ router.get("/getalltour", getAllTour);
 router.get("/getsingletour/:id", getSingleTour);
 router.get("/findtour/:city",findTour);
 
+// router.get("/search",findTour);
+
 export default router;
